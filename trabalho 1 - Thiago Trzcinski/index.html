@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            text-align: center;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        #weather-info {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin-top: 20px;
+        }
+
+        p {
+            margin: 0;
+            padding: 5px;
+        }
+    </style>
+    <title>Clima</title>
+</head>
+<body>
+
+    <h1>Clima em Videira - SC</h1>
+
+    <div id="weather-info">
+        <!-- As informações do tempo serão exibidas aqui -->
+    </div>
+
+    <script>
+        const apiKey = 'd742ea2d47c60fa025dfacd59ea6aad1';
+        const latitude = -27.008040;
+        const longitude = -51.152300;
+        const apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${apiKey}&units=metric&lang=pt_br`;
+
+        async function getWeather() {
+            try {
+                const response = await fetch(apiUrl);
+                const data = await response.json();
+
+                const weatherInfo = `
+                    <p>Temperatura: ${data.main.temp} °C</p>
+                    <p>Condição: ${data.weather[0].description}</p>
+                `;
+
+                document.getElementById('weather-info').innerHTML = weatherInfo;
+            } catch (error) {
+                console.error('Erro ao obter dados da previsão do tempo:', error);
+            }
+        }
+
+        getWeather();
+    </script>
+
+</body>
+</html>
