@@ -1,6 +1,5 @@
 # Código-Clima
 
-Descrição
 Pequeno código monolítico que demonstra o clima na cidade de Videira, SC. Utiliza a API OpenWeatherMap para obter dados meteorológicos em tempo real.
 
 Estrutura do Documento HTML
